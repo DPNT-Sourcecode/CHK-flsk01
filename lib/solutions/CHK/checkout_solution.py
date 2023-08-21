@@ -19,24 +19,25 @@ def checkout(skus):
         'E': 40
     }
 
-    # this is an illegal input, not something to change!
-    # skus = skus.upper() # string formatting
+    # putting as object for further tests
+    allowed_inputs = ['A','B','C','D','E']
 
     if len(skus) == 0:
         return 0
 
     # if there are any items in the input that don't match A,B,C, or D it's an illegal input
-    if any(item for item in skus if item not in ['A','B','C','D']):
+    if any(item for item in skus if item not in allowed_inputs):
         return -1
 
     # getting the count of each item, not it's value
     summed_items = {
-        item: skus.count(item) for item in ['A','B','C','D']
+        item: skus.count(item) for item in allowed_inputs
     }
 
     # multiplying the price of each item with the count of each item
     total_cost = sum([prices[item]*count for item, count in summed_items.items()])
 
+    # TODO: look at A's offers to "favour the customer"
     # case of offers on A and B (3A = 130, 2B = 45)
     # this is equivalent to "for every 3 A you buy, 20 off", "for every 2 B you buy, 15 off"
     if 'A' in summed_items.keys():
@@ -46,6 +47,9 @@ def checkout(skus):
             total_cost -= (summed_items['A'] // 3)*20
     if 'B' in summed_items.keys() and summed_items['B'] // 2 > 0:
         total_cost -= (summed_items['B'] // 2)*15
+    if 'E' in summed_items.keys() and summed_items['E'] // 2 > 0:
+        if 'B' in summed_items.keys():
+            total_cost -= (summed_items['E'] // 2)*prices['B']
 
     return total_cost
 
@@ -74,6 +78,7 @@ def checkout(skus):
 # Where:
 #  - param[0] = a String containing the SKUs of all the products in the basket
 #  - @return = an Integer representing the total checkout value of the items
+
 
 
 
