@@ -20,8 +20,11 @@ def checkout(skus):
 
     skus = skus.upper() # string formatting
 
+    if len(skus) == 0:
+        return 0
+
     # if there are any items in the input that don't match A,B,C, or D it's an illegal input
-    if any(item for item in skus not in ['A','B','C','D']):
+    if any(item for item in skus if item not in ['A','B','C','D']):
         return -1
 
     # getting the count of each item, not it's value
@@ -40,5 +43,6 @@ def checkout(skus):
         total_cost -= (summed_items['B'] // 2)*15
 
     return total_cost
+
 
 
