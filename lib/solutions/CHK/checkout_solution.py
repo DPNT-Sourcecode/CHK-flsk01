@@ -74,7 +74,18 @@ def checkout(skus):
 
     # 5P for 200
     if summed_items['P'] // 5 > 0:
-        total_cost -= (summed_items['P'])
+        total_cost -= (summed_items['P'] // 5)%50
+
+    # 3Q for 80 == 10 off
+
+    # 3R get one Q free
+
+    # 3U get one U free
+    if summed_items['U'] // 3 > 0:
+        total_cost -= (summed_items['U'] // 3)*prices['U']
+
+    # 3V for 130 == for 3 V, 20 off
+    if summed_items['V'] // 3 > 0:
 
     # for every 3 F, get one F free
     if summed_items['F'] // 3 > 0:
@@ -112,6 +123,7 @@ def checkout(skus):
 # | E    | 40    | 2E get one B free      |
 # | F    | 10    | 2F get one F free      |
 # +------+-------+------------------------+
+
 
 
 
