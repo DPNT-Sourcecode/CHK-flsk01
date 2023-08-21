@@ -18,7 +18,8 @@ def checkout(skus):
         'D': 15
     }
 
-    skus = skus.upper() # string formatting
+    # this is an illegal input, not something to change!
+    # skus = skus.upper() # string formatting
 
     if len(skus) == 0:
         return 0
@@ -43,6 +44,7 @@ def checkout(skus):
         total_cost -= (summed_items['B'] // 2)*15
 
     return total_cost
+
 
 
 
