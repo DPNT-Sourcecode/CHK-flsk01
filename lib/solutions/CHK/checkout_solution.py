@@ -54,15 +54,18 @@ def checkout(skus):
         item: skus.count(item) for item in allowed_inputs
     }
 
+    # add the T and Y items to S and remove as identical
+    
+
     # multiplying the price of each item with the count of each item
     total_cost = sum([prices[item]*count for item, count in summed_items.items()])
 
     # buy any 3 of (S,T,X,Y,Z) for 45
-    # Z=21; S,T,Y all 20, X 17
+    # Z=21; S,T,Y all 20, X=17
     # this may need to be calculated before total_cost, TBC
     multi_buy_nums = sum(summed_items[item] for item in ['S','T','X','Y','Z'])
     if multi_buy_nums // 3 > 0:
-        cost = 
+        cost = (multi_buy_nums // 3)*45
         if summed_items['Z'] > 0:
             summed_items['Z'] = summed_items['Z']%3
 
@@ -132,6 +135,7 @@ def checkout(skus):
         total_cost -= (summed_items['B'] // 2)*15
 
     return total_cost
+
 
 
 
