@@ -10,38 +10,6 @@ def checkout(skus):
     # initial assumption is that skus is of the form 'ABCAD'
     # therefore need to sum the characters in a string
 
-    # the basic price table as an object, no offers involved yet
-#     Our price table and offers:
-# +------+-------+------------------------+
-# | Item | Price | Special offers         |
-# +------+-------+------------------------+
-# | A    | 50    | 3A for 130, 5A for 200 |
-# | B    | 30    | 2B for 45              |
-# | C    | 20    |                        |
-# | D    | 15    |                        |
-# | E    | 40    | 2E get one B free      |
-# | F    | 10    | 2F get one F free      |
-# | G    | 20    |                        |
-# | H    | 10    | 5H for 45, 10H for 80  |
-# | I    | 35    |                        |
-# | J    | 60    |                        |
-# | K    | 80    | 2K for 150             |
-# | L    | 90    |                        |
-# | M    | 15    |                        |
-# | N    | 40    | 3N get one M free      |
-# | O    | 10    |                        |
-# | P    | 50    | 5P for 200             |
-# | Q    | 30    | 3Q for 80              |
-# | R    | 50    | 3R get one Q free      |
-# | S    | 30    |                        |
-# | T    | 20    |                        |
-# | U    | 40    | 3U get one U free      |
-# | V    | 50    | 2V for 90, 3V for 130  |
-# | W    | 20    |                        |
-# | X    | 90    |                        |
-# | Y    | 10    |                        |
-# | Z    | 50    |                        |
-# +------+-------+------------------------+
     # keeping in this format in case things change
     prices = {
         'A': 50,
@@ -64,11 +32,15 @@ def checkout(skus):
         'R': 50,
         'S': 30,
         'T': 20,
-        'U': 
+        'U': 40,
+        'V': 50,
+        'W': 20,
+        'X': 90,
+        'Y': 10,
+        'Z': 50
     }
 
-    # putting as object for further tests
-    allowed_inputs = ['A','B','C','D','E','F']
+    allowed_inputs = list(prices.keys())
 
     if len(skus) == 0:
         return 0
@@ -84,6 +56,10 @@ def checkout(skus):
 
     # multiplying the price of each item with the count of each item
     total_cost = sum([prices[item]*count for item, count in summed_items.items()])
+
+    # 5H for 45, 10H for 80 (for every 5, 5 off, for every 10, )
+    if summed_items['H'] // 10 > 0:
+        total_cost -= (summed_items['H'] // 10)*
 
     # for every 3 F, get one F free
     if summed_items['F'] // 3 > 0:
@@ -121,3 +97,4 @@ def checkout(skus):
 # | E    | 40    | 2E get one B free      |
 # | F    | 10    | 2F get one F free      |
 # +------+-------+------------------------+
+
