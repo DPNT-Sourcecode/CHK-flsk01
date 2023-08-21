@@ -24,18 +24,18 @@ def checkout(skus):
     if any(item for item in skus not in ['A','B','C','D']):
         return -1
 
-    # TODO: make this default_dict with value 0
     # getting the count of each item, not it's value
     summed_items = {
         item: skus.count(item) for item in ['A','B','C','D']
     }
 
+    # multiplying the price of each item with the count of each item
     total_cost = sum([prices[item]*count for item, count in summed_items.items()])
 
     # case of offers on A and B (3A = 130, 2B = 45)
-    if summed_items['A'] // 3 > 0:
-        total_cost += (summed_items['A'] // 3)*130
-    if summed_items['B'] // 2 > 0:
-        total_cost += (summed_items['B'] // 2)*45
-
+    # this is equivalent to "for every 3 A you buy, 20 off"
+    if 'A' in summed_items.keys() and summed_items['A'] // 3 > 0:
+        total_cost -= (summed_items['A'] // 3)*20
+    if 'B' in summed_items.keys() and summed_items['B'] // 2 > 0:
+        total_cost -= (summed_items['B'] // 2)*5
 
