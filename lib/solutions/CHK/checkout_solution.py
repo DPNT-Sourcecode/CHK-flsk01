@@ -24,9 +24,12 @@ def checkout(skus):
     if any(item for item in skus not in ['A','B','C','D']):
         return -1
 
-    
+    # getting the count of each item, not it's value
+    summed_items = {
+        item: skus.count(item) for item in ['A','B','C','D']
+    }
 
-
+    # case of offers on A and B
 
 
     raise NotImplementedError()
@@ -40,6 +43,7 @@ def checkout(skus):
 # | C    | 20    |                |
 # | D    | 15    |                |
 # +------+-------+----------------+
+
 
 
 
