@@ -64,8 +64,17 @@ def checkout(skus):
     if summed_items['H'] // 5 > 0:
         total_cost -= (summed_items['H'] // 5)*5
 
-    # 2K for 150
-    if summed_items['K'] // 2
+    # 2K for 150 == 10 off
+    if summed_items['K'] // 2 > 0:
+        total_cost -= (summed_items['K'] // 2)*10
+
+    # 3N get one M free
+    if summed_items['N'] // 3 > 0:
+        total_cost -= (min(summed_items['N'] // 2, summed_items['M']))*prices['M']
+
+    # 5P for 200
+    if summed_items['P'] // 5 > 0:
+        total_cost -= (summed_items['P'])
 
     # for every 3 F, get one F free
     if summed_items['F'] // 3 > 0:
@@ -103,5 +112,6 @@ def checkout(skus):
 # | E    | 40    | 2E get one B free      |
 # | F    | 10    | 2F get one F free      |
 # +------+-------+------------------------+
+
 
 
