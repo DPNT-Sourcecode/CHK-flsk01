@@ -66,9 +66,13 @@ def checkout(skus):
     if multi_buy_nums // 3 > 0:
         multi_buy_cost = (multi_buy_nums // 3)*45
         to_remove = (multi_buy_nums // 3)*3
+        # want to get to_remove to 0, taking off the values of Z, then S, then X in that order
         if to_remove >= summed_items['Z']:
             to_remove -= summed_items['Z']
             summed_items['Z'] = 0
+        else:
+            
+
         if to_remove >= summed_items['S']:
             to_remove -= summed_items['S']
             summed_items['S'] = 0
@@ -146,4 +150,5 @@ def checkout(skus):
         total_cost -= (summed_items['B'] // 2)*15
 
     return total_cost
+
 
