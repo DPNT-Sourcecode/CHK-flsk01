@@ -153,8 +153,3 @@ def checkout(skus):
         total_cost -= (summed_items['B'] // 2)*15
 
     return total_cost
-
-
-
-
-
