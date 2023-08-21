@@ -29,7 +29,11 @@ def checkout(skus):
         item: skus.count(item) for item in ['A','B','C','D']
     }
 
-    # case of offers on A and B
+    # case of offers on A and B (3A = 130, 2B = 45)
+    costs = {}
+    if summed_items['A'] // 3 > 0:
+        costs['A'] = (summed_items['A'] // 3)*50
+        costs['A'] += 
 
 
     raise NotImplementedError()
@@ -43,6 +47,7 @@ def checkout(skus):
 # | C    | 20    |                |
 # | D    | 15    |                |
 # +------+-------+----------------+
+
 
 
 
