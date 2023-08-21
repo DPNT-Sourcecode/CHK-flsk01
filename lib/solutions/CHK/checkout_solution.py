@@ -38,6 +38,11 @@ def checkout(skus):
     total_cost = sum([prices[item]*count for item, count in summed_items.items()])
 
     # TODO: look at A's offers to "favour the customer"
+    # if i have 15 A and I use the 5 offer, then 15*50 - 3*50 = 600
+    # or if i use the 3 offer, then 15*50 - 5*20 = 650 which is less of a deal
+    # if i have 18 A, then i need to use the 5 offer on 15 items, and the 3 offer on 3
+
+
     # case of offers on A and B (3A = 130, 2B = 45)
     # this is equivalent to "for every 3 A you buy, 20 off", "for every 2 B you buy, 15 off"
     if 'A' in summed_items.keys():
@@ -49,7 +54,7 @@ def checkout(skus):
         total_cost -= (summed_items['B'] // 2)*15
     if 'E' in summed_items.keys() and summed_items['E'] // 2 > 0:
         if 'B' in summed_items.keys():
-            total_cost -= (summed_items['E'] // 2)*prices['B']
+            total_cost -= (summed_items['E'] // 2)*prices['B'] # for every 2 E, get a free B
 
     return total_cost
 
@@ -78,6 +83,7 @@ def checkout(skus):
 # Where:
 #  - param[0] = a String containing the SKUs of all the products in the basket
 #  - @return = an Integer representing the total checkout value of the items
+
 
 
 
