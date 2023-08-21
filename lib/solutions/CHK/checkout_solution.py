@@ -80,7 +80,7 @@ def checkout(skus):
                 to_remove -= summed_items['S']
                 summed_items['S'] = 0
                 summed_items['X'] -= to_remove
-       
+
     else:
         multi_buy_cost = 0
 
@@ -153,6 +153,7 @@ def checkout(skus):
         total_cost -= (summed_items['B'] // 2)*15
 
     return total_cost
+
 
 
 
