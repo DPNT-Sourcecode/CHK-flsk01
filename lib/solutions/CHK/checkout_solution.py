@@ -20,9 +20,13 @@ def checkout(skus):
 
     skus = skus.upper() # string formatting
 
-    # if there are none of A,B,C,D in skus, then 
-    if len(set(skus).intersection({'A','B','C','D'})) == 0:
-           return -1
+    # if there are any items in the input that don't match A,B,C, or D it's an illegal input
+    if any(item for item in skus not in ['A','B','C','D']):
+        return -1
+
+    
+
+
 
 
     raise NotImplementedError()
@@ -36,6 +40,7 @@ def checkout(skus):
 # | C    | 20    |                |
 # | D    | 15    |                |
 # +------+-------+----------------+
+
 
 
 
