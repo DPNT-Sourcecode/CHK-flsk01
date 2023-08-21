@@ -65,18 +65,17 @@ def checkout(skus):
     multi_buy_nums = sum(summed_items[item] for item in ['S','T','X','Y','Z'])
     if multi_buy_nums // 3 > 0:
         multi_buy_cost = (multi_buy_nums // 3)*45
-        if multi_buy_nums >= summed_items['Z']:
-            multi_buy_nums -= summed_items['Z']
+        to_remove = (multi_buy_nums // 3)*3
+        if to_remove >= summed_items['Z']:
+            to_remove -= summed_items['Z']
             summed_items['Z'] = 0
-        if multi_buy_nums >= summed_items['S']:
-            multi_buy_nums -= summed_items['S']
+        if to_remove >= summed_items['S']:
+            to_remove -= summed_items['S']
             summed_items['S'] = 0
-        if multi_buy_nums >= summed_items['X']:
+        if to_remove >= summed_items['X']:
             summed_items['X'] = 0
     else:
         multi_buy_cost = 0
-
-
 
     # multiplying the price of each item with the count of each item
     total_cost = multi_buy_cost + sum([prices[item]*count for item, count in summed_items.items()])
@@ -147,3 +146,4 @@ def checkout(skus):
         total_cost -= (summed_items['B'] // 2)*15
 
     return total_cost
+
