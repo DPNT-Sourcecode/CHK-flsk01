@@ -76,9 +76,13 @@ def checkout(skus):
     if summed_items['P'] // 5 > 0:
         total_cost -= (summed_items['P'] // 5)%50
 
+    # 3R get one Q free (better deal than just Q so supercedes it)
+    if summed_items['R'] // 3 > 0:
+        total_cost -= (min(summed_items['R'] // 2, summed_items['Q']))*prices['Q']
+
     # 3Q for 80 == 10 off
 
-    # 3R get one Q free
+
 
     # 3U get one U free
     if summed_items['U'] // 3 > 0:
@@ -97,7 +101,7 @@ def checkout(skus):
 
     if summed_items['E'] // 2 > 0:
         total_cost -= (min(summed_items['E'] // 2, summed_items['B']))*prices['B']  # for every 2 E, get a free B
-        summed_items['B'] -= 1
+        summed_items['B'] -= 1  # think this should be E // 2
 
     if summed_items['A'] // 5 > 0:
         total_cost -= (summed_items['A'] // 5)*50  # new offer, if you buy 5A, you get 50 off
@@ -110,6 +114,7 @@ def checkout(skus):
         total_cost -= (summed_items['B'] // 2)*15
 
     return total_cost
+
 
 
 
