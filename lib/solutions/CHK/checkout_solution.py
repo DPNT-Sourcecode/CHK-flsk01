@@ -84,8 +84,3 @@ def checkout(skus):
 # | E    | 40    | 2E get one B free      |
 # | F    | 10    | 2F get one F free      |
 # +------+-------+------------------------+
-
-
-
-
-
