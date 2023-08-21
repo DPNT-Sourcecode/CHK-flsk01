@@ -40,7 +40,13 @@ def checkout(skus):
 
     if summed_items['B'] // 2 > 0:
         total_cost += (summed_items['B'] // 2)*45
+        total_cost += (summed_items['B'] % 2)*30
+    else:
+        total_cost += (summed_items['B'] % 2)*30
     raise NotImplementedError()
+
+    costs = [prices[item]*count for item, count in summed_items.items()]
+    
 
 # Our price table and offers:
 # +------+-------+----------------+
@@ -51,6 +57,7 @@ def checkout(skus):
 # | C    | 20    |                |
 # | D    | 15    |                |
 # +------+-------+----------------+
+
 
 
 
