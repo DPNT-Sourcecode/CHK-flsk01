@@ -21,7 +21,7 @@ def checkout(skus):
     }
 
     # putting as object for further tests
-    allowed_inputs = ['A','B','C','D','E', 'F']
+    allowed_inputs = ['A','B','C','D','E','F']
 
     if len(skus) == 0:
         return 0
@@ -48,9 +48,9 @@ def checkout(skus):
     # | E    | 40    | 2E get one B free      |
     # | F    | 10    | 2F get one F free      |
     # +------+-------+------------------------+
-    # to add: for every 3 F, get one F free
+    # for every 3 F, get one F free
     if summed_items['F'] // 3 > 0:
-        total_cost -= (summed_items['F'])
+        total_cost -= (summed_items['F'] // 3)*prices['F']
 
     if summed_items['E'] // 2 > 0:
         total_cost -= (min(summed_items['E'] // 2, summed_items['B']))*prices['B']  # for every 2 E, get a free B
@@ -84,6 +84,7 @@ def checkout(skus):
 # | E    | 40    | 2E get one B free      |
 # | F    | 10    | 2F get one F free      |
 # +------+-------+------------------------+
+
 
 
 
