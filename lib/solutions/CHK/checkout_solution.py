@@ -95,7 +95,7 @@ def checkout(skus):
 
     # 3V for 130 == for 3 V, 20 off; 2V for 90 == 10 off
     if summed_items['V'] // 3 > 0:
-        total_cost -= (summed_items['P'] // 3)*20
+        total_cost -= (summed_items['V'] // 3)*20
         summed_items['V'] = summed_items['V']%3
     if summed_items['V'] // 2 > 0:
         total_cost -= (summed_items['V'] // 2)*10
@@ -123,4 +123,5 @@ def checkout(skus):
         total_cost -= (summed_items['B'] // 2)*15
 
     return total_cost
+
 
