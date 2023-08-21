@@ -59,7 +59,12 @@ def checkout(skus):
 
     # buy any 3 of (S,T,X,Y,Z) for 45
     # Z=21; S,T,Y all 20, X 17
-    multi_buy_nums = sum(summed_items[item] for )
+    # this may need to be calculated before total_cost, TBC
+    multi_buy_nums = sum(summed_items[item] for item in ['S','T','X','Y','Z'])
+    if multi_buy_nums // 3 > 0:
+        cost = 
+        if summed_items['Z'] > 0:
+            summed_items['Z'] = summed_items['Z']%3
 
     # 5H for 45, 10H for 80 (for every 5, 5 off, for every 10, 20 off)
     if summed_items['H'] // 10 > 0:
@@ -127,6 +132,7 @@ def checkout(skus):
         total_cost -= (summed_items['B'] // 2)*15
 
     return total_cost
+
 
 
 
