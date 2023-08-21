@@ -16,11 +16,12 @@ def checkout(skus):
         'B': 30,
         'C': 20,
         'D': 15,
-        'E': 40
+        'E': 40,
+        'F': 10
     }
 
     # putting as object for further tests
-    allowed_inputs = ['A','B','C','D','E']
+    allowed_inputs = ['A','B','C','D','E', 'F']
 
     if len(skus) == 0:
         return 0
@@ -37,9 +38,20 @@ def checkout(skus):
     # multiplying the price of each item with the count of each item
     total_cost = sum([prices[item]*count for item, count in summed_items.items()])
 
-    # case of offers on A and B (3A = 130, 2B = 45), ... (more have come in)
-    # this is equivalent to "for every 3 A you buy, 20 off", "for every 2 B you buy, 15 off"
-    # forgot that the E deal is better than the B only deal, so this takes precedence
+    # +------+-------+------------------------+
+    # | Item | Price | Special offers         |
+    # +------+-------+------------------------+
+    # | A    | 50    | 3A for 130, 5A for 200 |
+    # | B    | 30    | 2B for 45              |
+    # | C    | 20    |                        |
+    # | D    | 15    |                        |
+    # | E    | 40    | 2E get one B free      |
+    # | F    | 10    | 2F get one F free      |
+    # +------+-------+------------------------+
+    # to add: for every 3 F, get one F free
+    if summed_items['F'] // 3 > 0:
+        total_cost -= (summed_items['F'])
+
     if summed_items['E'] // 2 > 0:
         total_cost -= (min(summed_items['E'] // 2, summed_items['B']))*prices['B']  # for every 2 E, get a free B
         summed_items['B'] -= 1
@@ -55,6 +67,23 @@ def checkout(skus):
         total_cost -= (summed_items['B'] // 2)*15
 
     return total_cost
+
+# A new item has arrived. Item F.
+# Our marketing team wants to try rewording the offer to see if it affects consumption
+# Instead of multi-pricing this item they want to say "buy 2Fs and get another F free"
+# The offer requires you to have 3 Fs in the basket.
+
+# Our price table and offers:
+# +------+-------+------------------------+
+# | Item | Price | Special offers         |
+# +------+-------+------------------------+
+# | A    | 50    | 3A for 130, 5A for 200 |
+# | B    | 30    | 2B for 45              |
+# | C    | 20    |                        |
+# | D    | 15    |                        |
+# | E    | 40    | 2E get one B free      |
+# | F    | 10    | 2F get one F free      |
+# +------+-------+------------------------+
 
 
 
