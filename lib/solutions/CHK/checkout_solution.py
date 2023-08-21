@@ -45,11 +45,12 @@ def checkout(skus):
         summed_items['A'] = summed_items['A']%5  # taking off the 5's to try and use the 3's offer
     if summed_items['A'] // 3 > 0:
         total_cost -= (summed_items['A'] // 3)*20
-    if 'B' in summed_items.keys() and summed_items['B'] // 2 > 0:
+    if summed_items['B'] // 2 > 0:
         total_cost -= (summed_items['B'] // 2)*15
-    if 'E' in summed_items.keys() and summed_items['E'] // 2 > 0:
-        if 'B' in summed_items.keys():
-            total_cost -= (summed_items['E'] // 2)*prices['B']  # for every 2 E, get a free B
+    if summed_items['E'] // 2 > 0:
+        total_cost -= (min(summed_items['E'] // 2, )*prices['B']  # for every 2 E, get a free B
+        summed_items['B'] -= 1
 
     return total_cost
+
 
