@@ -33,9 +33,12 @@ def checkout(skus):
     total_cost = sum([prices[item]*count for item, count in summed_items.items()])
 
     # case of offers on A and B (3A = 130, 2B = 45)
-    # this is equivalent to "for every 3 A you buy, 20 off"
+    # this is equivalent to "for every 3 A you buy, 20 off", "for every 2 B you buy, 15 off"
     if 'A' in summed_items.keys() and summed_items['A'] // 3 > 0:
         total_cost -= (summed_items['A'] // 3)*20
     if 'B' in summed_items.keys() and summed_items['B'] // 2 > 0:
-        total_cost -= (summed_items['B'] // 2)*5
+        total_cost -= (summed_items['B'] // 2)*15
+
+    return total_cost
+
 
