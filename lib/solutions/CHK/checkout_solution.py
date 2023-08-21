@@ -37,52 +37,18 @@ def checkout(skus):
     # multiplying the price of each item with the count of each item
     total_cost = sum([prices[item]*count for item, count in summed_items.items()])
 
-    # case of offers on A and B (3A = 130, 2B = 45)
+    # case of offers on A and B (3A = 130, 2B = 45), ... (more have come in)
     # this is equivalent to "for every 3 A you buy, 20 off", "for every 2 B you buy, 15 off"
     if 'A' in summed_items.keys():
         if summed_items['A'] // 5 > 0:
-            total_cost -= (summed_items['A'] // 5)*50 # new offer, if you buy 5A, you get 50 off
-            summed_items['A'] = summed_items['A']%5 # taking off the 5's to try and use the 3's offer
+            total_cost -= (summed_items['A'] // 5)*50  # new offer, if you buy 5A, you get 50 off
+            summed_items['A'] = summed_items['A']%5  # taking off the 5's to try and use the 3's offer
         if summed_items['A'] // 3 > 0:
             total_cost -= (summed_items['A'] // 3)*20
     if 'B' in summed_items.keys() and summed_items['B'] // 2 > 0:
         total_cost -= (summed_items['B'] // 2)*15
     if 'E' in summed_items.keys() and summed_items['E'] // 2 > 0:
         if 'B' in summed_items.keys():
-            total_cost -= (summed_items['E'] // 2)*prices['B'] # for every 2 E, get a free B
+            total_cost -= (summed_items['E'] // 2)*prices['B']  # for every 2 E, get a free B
 
     return total_cost
-
-
-# updated info !
-# Our price table and offers:
-# +------+-------+------------------------+
-# | Item | Price | Special offers         |
-# +------+-------+------------------------+
-# | A    | 50    | 3A for 130, 5A for 200 |
-# | B    | 30    | 2B for 45              |
-# | C    | 20    |                        |
-# | D    | 15    |                        |
-# | E    | 40    | 2E get one B free      |
-# +------+-------+------------------------+
-
-
-# Notes:
-#  - The policy of the supermarket is to always favor the customer when applying special offers.
-#  - All the offers are well balanced so that they can be safely combined.
-#  - For any illegal input return -1
-
-# In order to complete the round you need to implement the following method:
-#      checkout(String) -> Integer
-
-# Where:
-#  - param[0] = a String containing the SKUs of all the products in the basket
-#  - @return = an Integer representing the total checkout value of the items
-
-
-
-
-
-
-
-
