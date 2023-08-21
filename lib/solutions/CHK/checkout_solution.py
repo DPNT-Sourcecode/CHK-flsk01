@@ -39,18 +39,23 @@ def checkout(skus):
 
     # case of offers on A and B (3A = 130, 2B = 45), ... (more have come in)
     # this is equivalent to "for every 3 A you buy, 20 off", "for every 2 B you buy, 15 off"
-    if summed_items['A'] // 5 > 0:
-        total_cost -= (summed_items['A'] // 5)*50  # new offer, if you buy 5A, you get 50 off
-        summed_items['A'] = summed_items['A']%5  # taking off the 5's to try and use the 3's offer
-    if summed_items['A'] // 3 > 0:
-        total_cost -= (summed_items['A'] // 3)*20
-    if summed_items['B'] // 2 > 0:
-        total_cost -= (summed_items['B'] // 2)*15
+    # forgot that the E deal is better than the B only deal, so this takes precedence
     if summed_items['E'] // 2 > 0:
         total_cost -= (min(summed_items['E'] // 2, summed_items['B']))*prices['B']  # for every 2 E, get a free B
         summed_items['B'] -= 1
 
+    if summed_items['A'] // 5 > 0:
+        total_cost -= (summed_items['A'] // 5)*50  # new offer, if you buy 5A, you get 50 off
+        summed_items['A'] = summed_items['A']%5  # taking off the 5's to try and use the 3's offer
+
+    if summed_items['A'] // 3 > 0:
+        total_cost -= (summed_items['A'] // 3)*20
+
+    if summed_items['B'] // 2 > 0:
+        total_cost -= (summed_items['B'] // 2)*15
+
     return total_cost
+
 
 
 
