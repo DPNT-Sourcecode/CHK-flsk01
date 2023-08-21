@@ -30,38 +30,12 @@ def checkout(skus):
         item: skus.count(item) for item in ['A','B','C','D']
     }
 
-    # case of offers on A and B (3A = 130, 2B = 45)
-    total_cost = 0
-    if summed_items['A'] // 3 > 0:
-        total_cost = (summed_items['A'] // 3)*130
-        total_cost += (summed_items['A'] % 3)*50
-    else:
-        total_cost = (summed_items['A'])*50
+    total_cost = sum([prices[item]*count for item, count in summed_items.items()])
 
+    # case of offers on A and B (3A = 130, 2B = 45)
+    if summed_items['A'] // 3 > 0:
+        total_cost += (summed_items['A'] // 3)*130
     if summed_items['B'] // 2 > 0:
         total_cost += (summed_items['B'] // 2)*45
-        total_cost += (summed_items['B'] % 2)*30
-    else:
-        total_cost += (summed_items['B'] % 2)*30
-    raise NotImplementedError()
-
-    costs = [prices[item]*count for item, count in summed_items.items()]
-    
-
-# Our price table and offers:
-# +------+-------+----------------+
-# | Item | Price | Special offers |
-# +------+-------+----------------+
-# | A    | 50    | 3A for 130     |
-# | B    | 30    | 2B for 45      |
-# | C    | 20    |                |
-# | D    | 15    |                |
-# +------+-------+----------------+
-
-
-
-
-
-
 
 
