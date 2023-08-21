@@ -74,7 +74,7 @@ def checkout(skus):
 
     # 5P for 200
     if summed_items['P'] // 5 > 0:
-        total_cost -= (summed_items['P'] // 5)%50
+        total_cost -= (summed_items['P'] // 5)*50
 
     # 3R get one Q free (better deal than just Q so supercedes it)
     if summed_items['R'] // 3 > 0:
@@ -122,10 +122,3 @@ def checkout(skus):
         total_cost -= (summed_items['B'] // 2)*15
 
     return total_cost
-
-
-
-
-
-
-
