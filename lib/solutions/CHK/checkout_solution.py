@@ -57,6 +57,10 @@ def checkout(skus):
     # multiplying the price of each item with the count of each item
     total_cost = sum([prices[item]*count for item, count in summed_items.items()])
 
+    # buy any 3 of (S,T,X,Y,Z) for 45
+    # Z=21; S,T,Y all 20, X 17
+    multi_buy_nums = sum(summed_items[item] for )
+
     # 5H for 45, 10H for 80 (for every 5, 5 off, for every 10, 20 off)
     if summed_items['H'] // 10 > 0:
         total_cost -= (summed_items['H'] // 10)*20
@@ -64,9 +68,9 @@ def checkout(skus):
     if summed_items['H'] // 5 > 0:
         total_cost -= (summed_items['H'] // 5)*5
 
-    # 2K for 150 == 10 off
+    # 2K for 120 == 20 off
     if summed_items['K'] // 2 > 0:
-        total_cost -= (summed_items['K'] // 2)*10
+        total_cost -= (summed_items['K'] // 2)*20
 
     # 3N get one M free
     if summed_items['N'] // 3 > 0:
@@ -89,7 +93,7 @@ def checkout(skus):
     if summed_items['Q'] // 3 > 0:
         total_cost -= (summed_items['Q'] // 3)*10
 
-    # 3U get one U free, i made mistake in that i thought it was akin to F, but no
+    # 3U get one U free
     if summed_items['U'] // 4 > 0:
         total_cost -= (summed_items['U'] // 4)*prices['U']
 
@@ -123,6 +127,7 @@ def checkout(skus):
         total_cost -= (summed_items['B'] // 2)*15
 
     return total_cost
+
 
 
 
