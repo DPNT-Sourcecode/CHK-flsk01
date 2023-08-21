@@ -71,21 +71,16 @@ def checkout(skus):
             summed_items['Z'] -= to_remove
             to_remove = 0
         else:
-            
-
-        if to_remove >= summed_items['Z']:
             to_remove -= summed_items['Z']
             summed_items['Z'] = 0
-        else:
-            summed_items['Z'] -= to_remove
-
-        if to_remove >= summed_items['S']:
-            to_remove -= summed_items['S']
-            summed_items['S'] = 0
-        else:
-            summed_items['S'] -= to_remove
-        if to_remove >= summed_items['X']:
-            summed_items['X'] = 0
+            if summed_items['S'] >= to_remove:
+                summed_items['S'] -= to_remove
+                to_remove = 0
+            else:
+                to_remove -= summed_items['S']
+                summed_items['S'] = 0
+                summed_items['X'] -= to_remove
+       
     else:
         multi_buy_cost = 0
 
@@ -158,6 +153,7 @@ def checkout(skus):
         total_cost -= (summed_items['B'] // 2)*15
 
     return total_cost
+
 
 
 
