@@ -84,8 +84,12 @@ def checkout(skus):
     if summed_items['U'] // 3 > 0:
         total_cost -= (summed_items['U'] // 3)*prices['U']
 
-    # 3V for 130 == for 3 V, 20 off
+    # 3V for 130 == for 3 V, 20 off; 2V for 90 == 10 off
     if summed_items['V'] // 3 > 0:
+        total_cost -= (summed_items['P'] // 3)*20
+        summed_items['V'] = summed_items['V']%3
+    if summed_items['V'] // 2 > 0:
+        total_cost -= (summed_items['V'] // 2)*10
 
     # for every 3 F, get one F free
     if summed_items['F'] // 3 > 0:
@@ -106,23 +110,6 @@ def checkout(skus):
         total_cost -= (summed_items['B'] // 2)*15
 
     return total_cost
-
-# A new item has arrived. Item F.
-# Our marketing team wants to try rewording the offer to see if it affects consumption
-# Instead of multi-pricing this item they want to say "buy 2Fs and get another F free"
-# The offer requires you to have 3 Fs in the basket.
-
-# Our price table and offers:
-# +------+-------+------------------------+
-# | Item | Price | Special offers         |
-# +------+-------+------------------------+
-# | A    | 50    | 3A for 130, 5A for 200 |
-# | B    | 30    | 2B for 45              |
-# | C    | 20    |                        |
-# | D    | 15    |                        |
-# | E    | 40    | 2E get one B free      |
-# | F    | 10    | 2F get one F free      |
-# +------+-------+------------------------+
 
 
 
